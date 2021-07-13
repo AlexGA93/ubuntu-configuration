@@ -8,7 +8,8 @@
 | [rofi](https://github.com/davatorium/rofi) | A simple search menu. |
 | [bumblebee-status](https://bumblebee-status.readthedocs.io/en/latest/)  | Modular, theme-able [status line generator](https://github.com/tobi-wan-kenobi/bumblebee-status) for the i3 window manager. |
 | [compton](https://manpages.ubuntu.com/manpages/bionic/man1/compton.1.html) | Compositor for X11 |
-|Lxrandr| A GUI for xrandr
+|Lxrandr| A GUI for xrandr|
+|lxappearance|A simple GUI to change theme files and folder icons|
 
 ### Step by Step
 Installing i3-gaps for Ubuntu
