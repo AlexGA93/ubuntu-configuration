@@ -4,6 +4,11 @@
     ```
     set $mod Mod4
     ```
+- Client window settings.
+    ```
+    <class>        <border> <bg>   <text>  <indicator>  <child_brder>
+    client.focused #FF0D00 #FF0D00 #FF0D00 #FF0D00     #848cbd
+    ```
 - Setting our borders to gaps
     ```
     for_window [class=".*"] border pixel 0
