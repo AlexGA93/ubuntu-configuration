@@ -81,7 +81,15 @@ We've choosen [Dracula Theme](https://draculatheme.com/) for many of my software
         Double check that it cloned correctly
         Enjoy!
 
+- [AMD DRIVERS UBUNTU](https://drivers.amd.com/drivers/linux/amdgpu-pro-20.20-1098277-ubuntu-20.04.tar.xz)
 
+- Vulkan shaders for ubuntu
+```
+sudo add-apt-repository ppa:oibaf/graphics-drivers
+sudo apt update
+sudo apt upgrade
+apt install libvulkan1 mesa-vulkan-drivers vulkan-utils
+```
 
 
 
