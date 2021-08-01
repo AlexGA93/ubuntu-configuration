@@ -6,7 +6,7 @@ set $mod Mod4
 exec compton -f
 
 # Para cerrar el ordenador presionar la combinación de teclas win+Shift+p
-#bindsym $mod+Shift+p exec  /sbin/poweroff
+#bindsym $mod+Shift+p exec  /sbin/poweroff   #Ask if i am sure
 
 # start a terminal
 bindsym $mod+Return exec gnome-terminal
@@ -49,10 +49,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 		### move focused window ###
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+#bindsym $mod+Shift+j move left
+#bindsym $mod+Shift+k move down
+#bindsym $mod+Shift+l move up
+#bindsym $mod+Shift+semicolon move right
 
 		### alternatively, you can use the cursor keys: ###
 bindsym $mod+Shift+Left move left
@@ -90,7 +90,7 @@ bindsym $mod+a focus parent
 ##################################################################################################################
 
 		### Background ###
-exec_always feh --bg-fill /home/elros/Pictures/monolito.jpg
+exec_always feh --bg-fill /home/elros/Pictures/monolite.jpg
 
 ##################################################################################################################
 
@@ -107,14 +107,17 @@ exec --no-startup-id compton
 ##################################################################################################################
 
 		### Setting Font ###
-font pango:JetBrainsMono NF Bold 8
+font pango:JetBrainsMono NF Bold 10
 
 ##################################################################################################################
+		### Lock Session ###
 		
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
+
+bindsym $mod+Shift+l exec i3lock --image=/home/elros/Pictures/i3lock-wallpapers/chain.png -t 
 ##################################################################################################################
 
 		### Network Manager ###
@@ -211,7 +214,7 @@ bindsym $mod+r mode "resize"
 		### Bar Configuration ###
 
 bar {
-  # status_command i3status
+  # status_command exec /home/elros/.config/i3status/
 
   # https://github.com/tobi-wan-kenobi/bumblebee-status
   # https://bumblebee-status.readthedocs.io/en/main/modules.html
@@ -224,9 +227,9 @@ bar {
   -p cpu.warning:85% \
   -p cpu.critical:90% \
   -p cpu.percpu: true \ 
-#-t iceberg-rainbow \
+  
 
-  font pango:JetBrainsMono NF 10
+  font pango:JetBrainsMono NF Bold 10
   position top
   workspace_buttons yes
   strip_workspace_numbers yes
