@@ -10,7 +10,7 @@
 | [compton](https://manpages.ubuntu.com/manpages/bionic/man1/compton.1.html) | Compositor for X11 |
 |Lxrandr| A GUI for xrandr|
 |lxappearance|A simple GUI to change theme files and folder icons|
-|[devilspice](https://help.ubuntu.com/community/Devilspie)|program to become vscode transparent by a bash file|
+|[devilspie](https://help.ubuntu.com/community/Devilspie)|program to become vscode transparent by a bash file|
 
 ### Step by Step
 Installing i3-gaps for Ubuntu
