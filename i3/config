@@ -2,6 +2,28 @@
 set $mod Mod4
 
 
+bindsym $mod+Shift+l exec i3lock --image=/home/elros/Pictures/i3lock-wallpapers/chain.png -t 
+
+
+exec_always	--no-startup-id xdg-screensaver status
+
+### Set xrandr resolution starting system
+exec_always     --no-startup-id xrandr --output DisplayPort-2 --mode 2560x1440 --rate 144.00
+exec_always     --no-startup-id xrandr --output DisplayPort-2 --brightness 0.7
+exec_always     --no-startup-id xrandr --output HDMI-A-0 --brightness 0.7
+
+
+		### Visual Studio Transparency ###
+exec_always     --no-startup-id devilspie
+
+exec_always --no-startup-id xset dpms 600
+exec_always --no-startup-id xautolock -time 7 -locker i3lock --image=/home/elros/Pictures/i3lock-wallpapers/mechanic_dark.jpeg
+
+		### Background ###
+exec_always feh --bg-fill /home/elros/Pictures/mechanic.jpeg
+
+##################################################################################################################
+
 # Habilitar un compositor para tener transparencias y transiciones suaves. "sudo apt install compton"
 exec compton -f
 
@@ -13,12 +35,6 @@ bindsym $mod+Return exec gnome-terminal
 
 ### start Search Menu Rofi ###
 bindsym $mod+d exec "rofi -modi drun,run -show drun"
-
-
-### Set xrandr resolution starting system
-exec_always	--no-startup-id xrandr --output DisplayPort-2 --mode 2560x1440 --rate 144.00
-exec_always	--no-startup-id xrandr --output DisplayPort-2 --brightness 0.7
-exec_always	--no-startup-id xrandr --output HDMI-A-0 --brightness 0.7
 
 ##################################################################################################################
 
@@ -89,11 +105,6 @@ bindsym $mod+a focus parent
 
 ##################################################################################################################
 
-		### Background ###
-exec_always feh --bg-fill /home/elros/Pictures/monolite.jpg
-
-##################################################################################################################
-
 		### Pulse Audio controls ###
 #bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +5% #increase sound volume
 #bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -5% #decrease sound volume
@@ -107,7 +118,7 @@ exec --no-startup-id compton
 ##################################################################################################################
 
 		### Setting Font ###
-font pango:JetBrainsMono NF Bold 10
+font pango:JetBrainsMono Nerd Font 10
 
 ##################################################################################################################
 		### Lock Session ###
@@ -117,7 +128,7 @@ font pango:JetBrainsMono NF Bold 10
 #exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 
-bindsym $mod+Shift+l exec i3lock --image=/home/elros/Pictures/i3lock-wallpapers/chain.png -t 
+
 ##################################################################################################################
 
 		### Network Manager ###
@@ -180,7 +191,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -223,7 +234,7 @@ bar {
   
   status_command ~/.config/bumblebee-status/bumblebee-status \
   -m spotify datetime weather disk xrandr memory pasource pasink \
-  -t dracula-powerline \
+  -t iceberg-rainbow \
   -p cpu.warning:85% \
   -p cpu.critical:90% \
   -p cpu.percpu: true \ 
@@ -248,5 +259,6 @@ bar {
 }
 
 ##################################################################################################################
+
 
 
