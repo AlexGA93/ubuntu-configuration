@@ -10,6 +10,7 @@
 | [compton](https://manpages.ubuntu.com/manpages/bionic/man1/compton.1.html) | Compositor for X11 |
 |Lxrandr| A GUI for xrandr|
 |lxappearance|A simple GUI to change theme files and folder icons|
+|[devilspice](https://help.ubuntu.com/community/Devilspie)|program to become vscode transparent by a bash file|
 
 ### Step by Step
 Installing i3-gaps for Ubuntu
@@ -90,9 +91,18 @@ sudo apt update
 sudo apt upgrade
 apt install libvulkan1 mesa-vulkan-drivers vulkan-utils
 ```
-
-
-
-
+### Bash scripting devilspice
+You'll need to create a fodler:
+```
+mkdir -p ~/.devilspice
+cd .devilspice
+echo '(if (contains (window_class) "Code")
+    (begin
+        (spawn_async (str "xprop -id " (window_xid) " -f _KDE_NET_WM_BLUR_BEHIND_REGION 32c -set _KDE_NET_WM_BLUR_BEHIND_REGION 0 "))
+        (spawn_async (str "xprop -id " (window_xid) " -f _NET_WM_WINDOW_OPACITY 32c -set _NET_WM_WINDOW_OPACITY 0xD8000000"))
+    )
+' > ~/.devilspie/vscode_transparent.ds
+```
+This will create the bas cript above to letting us (with the i3 config order) set our vscode transparent
 
 
