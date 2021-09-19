@@ -1,156 +1,177 @@
-		### Setting our 'Super' key ###
+####### STUFF TO DOWNLOAD BEFORE EXECUTE #######
+# Nerd Fonts Jetbrains
+# xrandr
+# wallpapers
+# nitrogen or feh
+# i3
+# i3-gaps
+# i3-blocks
+# i3lock
+# i3lock-fancy
+# i3-nagbar
+# xset
+# xautolock
+# devilspie
+# rofi
+# compton
+# bumblebee-status
+#################################################
+
+# Set Super key
 set $mod Mod4
 
+############################################################################################
 
-bindsym $mod+Shift+l exec i3lock --image=/home/elros/Pictures/i3lock-wallpapers/chain.png -t 
+#Setting Font
 
+font pango:JetBrainsMono Nerd Font 10
 
-exec_always	--no-startup-id xdg-screensaver status
+############################################################################################
+# Xrandr Configuration
+### Xrandr initial Config
 
-### Set xrandr resolution starting system
-exec_always     --no-startup-id xrandr --output DisplayPort-2 --mode 2560x1440 --rate 144.00
-exec_always     --no-startup-id xrandr --output DisplayPort-2 --brightness 0.7
-exec_always     --no-startup-id xrandr --output HDMI-A-0 --brightness 0.7
+#Dual Monitor Configration
 
+#exec_always --no-startup-id xrandr --output DisplayPort-2 --primary --mode 2560x1440 --rate 144.00 --output HDMI-A-0 --mode 1920x1080 --rate 60.00
 
-		### Visual Studio Transparency ###
-exec_always     --no-startup-id devilspie
-
-exec_always --no-startup-id xset dpms 600
-exec_always --no-startup-id xautolock -time 7 -locker i3lock --image=/home/elros/Pictures/i3lock-wallpapers/mechanic_dark.jpeg
-
-		### Background ###
-exec_always feh --bg-fill /home/elros/Pictures/mechanic.jpeg
-
+exec_always --no-startup-id ~/.screenlayout/best_dual.sh
 ##################################################################################################################
+### Xrandr Brightness Settings
 
-# Habilitar un compositor para tener transparencias y transiciones suaves. "sudo apt install compton"
-exec compton -f
+exec_always --no-startup-id xrandr --output DisplayPort-2 --brightness 0.7
+exec_always --no-startup-id xrandr --output HDMI-A-0 --brightness 0.7
 
-# Para cerrar el ordenador presionar la combinación de teclas win+Shift+p
-#bindsym $mod+Shift+p exec  /sbin/poweroff   #Ask if i am sure
+#Setting Volume Adjust
 
-# start a terminal
+#set $refresh_i3status killall -SIGUSR1 i3status
+#bindsym button7 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+#bindsym button6 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+############################################################################################
+
+# Background
+exec_always	--no-startup-id	nitrogen --restore
+#exec_always feh --bg-fill /home/elros/Pictures/azul.jpg
+
+############################################################################################
+
+# Lock Screen
+
+bindsym $mod+Shift+l exec i3lock-fancy 
+
+# Set time to poweroff monitor(time in seconds)
+exec_always --no-startup-id xset dpms 600
+
+exec_always --no-startup-id xautolock -time 300 -locker i3lock-fancy
+
+############################################################################################
+
+# Terminal
+
 bindsym $mod+Return exec gnome-terminal
 
-### start Search Menu Rofi ###
-bindsym $mod+d exec "rofi -modi drun,run -show drun"
+############################################################################################
+
+# Set Visual Studio Code Transparent
+# exec_always --no-startup-id devilspie
 
 ##################################################################################################################
 
-		### Window Configuration ###
+# Shut down system command win+Shift+p
+
+bindsym $mod+Shift+p exec "i3-nagbar -t warning -m 'Log Out?' -b 'Yes' 'i3-msg exit' -f 'JetBrainsMono Nerd Font'"
+
+##################################################################################################################
+
+# Setting Rofi with Icons
+
+bindsym $mod+d exec rofi -modi drun -show drun -show-icons
+
+##################################################################################################################
+
+# Setting Windows Transition Effect
+exec_always --no-startup-id compton
+
+##################################################################################################################
+
+# Windows Global Configuration
+
+#GAPS
 for_window [class=".*"] border pixel 2
 gaps inner 8
-gaps outer 1
+gaps outer 8
 
+#FocusColors
 client.focused #FF0D00 #FF0D00 #FF0D00 #848cbd     #848cbd
 
-		### Use Mouse+$mod to drag floating windows to their wanted position ###
-floating_modifier $mod
-
-		### kill focused window ###
-bindsym $mod+Shift+q kill
-
-
-		### change focus ###
+#Focus Windows Settings
 bindsym $mod+j focus left
 bindsym $mod+k focus down
 bindsym $mod+l focus up
 bindsym $mod+semicolon focus right
 
-		### alternatively, you can use the cursor keys: ###
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-		### move focused window ###
 #bindsym $mod+Shift+j move left
 #bindsym $mod+Shift+k move down
 #bindsym $mod+Shift+l move up
 #bindsym $mod+Shift+semicolon move right
 
-		### alternatively, you can use the cursor keys: ###
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-		### split in horizontal orientation ###
+#SplitOrientation(vertical & horizontal)
+bindsym $mod+v split v
 bindsym $mod+h split h
 
-		### split in vertical orientation ###
-bindsym $mod+v split v
-
-### enter fullscreen mode for the focused container ###
+#FullscreenModeContainer
 bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
+#Change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-### toggle tiling / floating ###
+#ToggleTilling&Foloating
 bindsym $mod+Shift+space floating toggle
-
-### change focus between tiling / floating windows ###
 bindsym $mod+space focus mode_toggle
 
-### focus the parent container ###
+#FocusParentContainer
 bindsym $mod+a focus parent
 
-### focus the child container ###
+#FocusChildContainer(inactive)
 #bindsym $mod+d focus child
 
 
-##################################################################################################################
+#FloatingWindow
+floating_modifier $mod
 
-		### Pulse Audio controls ###
-#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +5% #increase sound volume
-#bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -5% #decrease sound volume
-#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-
-##################################################################################################################
-
-		### Compton to opacity ###
-exec --no-startup-id compton
-
-##################################################################################################################
-
-		### Setting Font ###
-font pango:JetBrainsMono Nerd Font 10
-
-##################################################################################################################
-		### Lock Session ###
-		
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+#KillWindow
+bindsym $mod+Shift+q kill
 
 
 
 ##################################################################################################################
 
-		### Network Manager ###
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
+#Setting Opacity by Compton
+
+#exec --no-startup-id compton
+
+##################################################################################################################
+
+#NetWorkManager
+
 exec --no-startup-id nm-applet
 
 ##################################################################################################################
-		
-		### Use pactl to adjust volume in PulseAudio. ###
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-##################################################################################################################
-
-		### Workspaces Configuration ###
-
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
+#WorkSpace Configuration
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -188,8 +209,10 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exit
 
@@ -222,43 +245,44 @@ bindsym $mod+r mode "resize"
 
 ##################################################################################################################
 
-		### Bar Configuration ###
+#Setting Configration Top Bar(with bumblebee-status modules & theme)
 
 bar {
-  # status_command exec /home/elros/.config/i3status/
 
-  # https://github.com/tobi-wan-kenobi/bumblebee-status
-  # https://bumblebee-status.readthedocs.io/en/main/modules.html
-  # https://www.youtube.com/watch?v=4_jL4EHAlsk
+	# https://github.com/tobi-wan-kenobi/bumblebee-status
+	# https://bumblebee-status.readthedocs.io/en/main/modules.html
+	# https://www.youtube.com/watch?v=4_jL4EHAlsk
+	
+	#/etc/i3blocks.conf
+	#status_command i3blocks
 
+
+	status_command ~/.config/bumblebee-status/bumblebee-status \
+	-m spotify datetime weather disk xrandr memory pasource pasink  \
+	-t dracula-powerline \
+	-p cpu.warning:85% \
+	-p cpu.critical:90% \
+	-p cpu.percpu: true \ 
   
-  status_command ~/.config/bumblebee-status/bumblebee-status \
-  -m spotify datetime weather disk xrandr memory pasource pasink \
-  -t iceberg-rainbow \
-  -p cpu.warning:85% \
-  -p cpu.critical:90% \
-  -p cpu.percpu: true \ 
-  
 
-  font pango:JetBrainsMono NF Bold 10
-  position top
-  workspace_buttons yes
-  strip_workspace_numbers yes
+	font pango:JetBrainsMono NF Bold 10
+	position top
+	workspace_buttons yes
+	strip_workspace_numbers yes
 
-  colors {
-    background #282A36
-    statusline #d82b00
-    separator #e3941a
-    
-    #<colorclass>      <border> <bg>   <text>
-    focused_workspace  #e3941a #444444 #ffffff
-    active_workspace   #e3941a #5f676a #ffffff
-    inactive_workspace #444444 #444444 #e3941a
-    urgent_workspace   #2f343a #900000 #ffffff
-  }
+	colors {
+		background #282A36
+		statusline #d82b00
+		separator #e3941a
+
+		#<colorclass>      <border> <bg>   <text>
+		focused_workspace  #e3941a #282A36 #ffffff
+		active_workspace   #e3941a #5f676a #ffffff
+		inactive_workspace #444444 #282A36 #e3941a
+		urgent_workspace   #2f343a #900000 #ffffff
+	}
 }
 
 ##################################################################################################################
-
 
 
