@@ -15,6 +15,7 @@
 # rofi
 # compton
 # bumblebee-status
+
 #################################################
 
 # Set Super key
@@ -61,9 +62,9 @@ exec_always	--no-startup-id	nitrogen --restore
 bindsym $mod+Shift+l exec i3lock-fancy 
 
 # Set time to poweroff monitor(time in seconds)
-exec_always --no-startup-id xset dpms 600
+exec_always --no-startup-id xset dpms 3600
 
-exec_always --no-startup-id xautolock -time 300 -locker i3lock-fancy
+exec_always --no-startup-id xautolock -time 60 -locker i3lock-fancy
 
 ############################################################################################
 
@@ -86,21 +87,18 @@ bindsym $mod+Shift+p exec "i3-nagbar -t warning -m 'Log Out?' -b 'Yes' 'i3-msg e
 
 # Setting Rofi with Icons
 
-bindsym $mod+d exec rofi -modi drun -show drun -show-icons
-
-##################################################################################################################
-
-# Setting Windows Transition Effect
-exec_always --no-startup-id compton
-
+bindsym $mod+d exec rofi -modi drun -show drun -show-icons -width 20
+bindsym $mod+Shift+d exec rofi -show power-menu -modi power-menu:rofi-power-menu -width 20
 ##################################################################################################################
 
 # Windows Global Configuration
 
 #GAPS
 for_window [class=".*"] border pixel 2
-gaps inner 8
-gaps outer 8
+gaps inner 10
+gaps outer 3
+
+
 
 #FocusColors
 client.focused #FF0D00 #FF0D00 #FF0D00 #848cbd     #848cbd
@@ -161,7 +159,7 @@ bindsym $mod+Shift+q kill
 
 #Setting Opacity by Compton
 
-#exec --no-startup-id compton
+exec_always --no-startup-id compton 
 
 ##################################################################################################################
 
@@ -259,7 +257,7 @@ bar {
 
 	status_command ~/.config/bumblebee-status/bumblebee-status \
 	-m spotify datetime weather disk xrandr memory pasource pasink  \
-	-t dracula-powerline \
+	-t iceberg-rainbow \
 	-p cpu.warning:85% \
 	-p cpu.critical:90% \
 	-p cpu.percpu: true \ 
@@ -284,5 +282,3 @@ bar {
 }
 
 ##################################################################################################################
-
-
