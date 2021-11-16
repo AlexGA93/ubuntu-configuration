@@ -49,7 +49,7 @@ configuration {
     
     highlight:     underline bold #eceff4;
 
-    transparent: rgba(46,52,64,0);
+    transparent: rgba(45, 50, 84, 0);
 }
 
 window {
