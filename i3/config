@@ -101,7 +101,7 @@ gaps outer 3
 
 
 #FocusColors
-client.focused #FF0D00 #FF0D00 #FF0D00 #848cbd     #848cbd
+client.focused #FF0D00 #FF0D00 #FF0D00 #5a65a7 
 
 #Focus Windows Settings
 bindsym $mod+j focus left
