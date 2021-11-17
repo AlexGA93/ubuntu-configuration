@@ -29,13 +29,9 @@ font pango:JetBrainsMono Nerd Font 10
 
 ############################################################################################
 # Xrandr Configuration
-### Xrandr initial Config
-
-#Dual Monitor Configration
-
-#exec_always --no-startup-id xrandr --output DisplayPort-2 --primary --mode 2560x1440 --rate 144.00 --output HDMI-A-0 --mode 1920x1080 --rate 60.00
 
 exec_always --no-startup-id ~/.screenlayout/best_dual.sh
+#exec_always --no-startup-id ~/.screenlayout/vertical_dual.sh
 ##################################################################################################################
 ### Xrandr Brightness Settings
 
@@ -87,8 +83,8 @@ bindsym $mod+Shift+p exec "i3-nagbar -t warning -m 'Log Out?' -b 'Yes' 'i3-msg e
 
 # Setting Rofi with Icons
 
-bindsym $mod+d exec rofi -modi drun -show drun -show-icons -width 20
-bindsym $mod+Shift+d exec rofi -show power-menu -modi power-menu:rofi-power-menu -width 20
+bindsym $mod+d exec rofi -modi drun -show drun -show-icons -width 20 -theme ~/.config/rofi/Nord/config.rasi
+bindsym $mod+Shift+d exec rofi -show power-menu -modi power-menu:rofi-power-menu -width 20 -theme ~/.config/rofi/Nord/config.rasi
 ##################################################################################################################
 
 # Windows Global Configuration
@@ -101,8 +97,8 @@ gaps outer 3
 
 
 #FocusColors
-client.focused #FF0D00 #FF0D00 #FF0D00 #5a65a7 
-
+client.focused #FF0D00 #FF0D00 #FF0D00 #363d65 #5a65a7
+# 848cbd
 #Focus Windows Settings
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -256,7 +252,7 @@ bar {
 
 
 	status_command ~/.config/bumblebee-status/bumblebee-status \
-	-m spotify datetime weather disk xrandr memory pasource pasink  \
+	-m spotify datetime weather xrandr memory pasource pasink  \
 	-t iceberg-rainbow \
 	-p cpu.warning:85% \
 	-p cpu.critical:90% \
