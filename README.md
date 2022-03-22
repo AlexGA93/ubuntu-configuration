@@ -11,6 +11,7 @@
 |Lxrandr| A GUI for xrandr|
 |lxappearance|A simple GUI to change theme files and folder icons|
 |[devilspie](https://help.ubuntu.com/community/Devilspie)|program to become vscode transparent by a bash file|
+|[rofi power-menu](https://github.com/jluttine/rofi-power-menu)|
 
 ### Step by Step
 Installing i3-gaps for Ubuntu
