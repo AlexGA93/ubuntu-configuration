@@ -158,8 +158,8 @@ bindsym $mod+Shift+q kill
 ##################################################################################################################
 
 #Setting Opacity by Compton
-exec --no-startup-id compton --config $HOME/.config/i3/compton.conf
-#exec_always --no-startup-id compton 
+
+exec_always --no-startup-id compton 
 
 ##################################################################################################################
 
@@ -245,6 +245,9 @@ bindsym $mod+r mode "resize"
 
 #Setting Configration Top Bar(with bumblebee-status modules & theme)
 
+
+#exec_always --no-startup-id sh $HOME/.config/polybar/launch.sh
+
 bar {
 
 	# https://github.com/tobi-wan-kenobi/bumblebee-status
@@ -256,12 +259,12 @@ bar {
 
 
 	status_command ~/.config/bumblebee-status/bumblebee-status \
-	-m spotify datetime weather xrandr memory pasource pasink   \
+	-m spotify datetime weather xrandr memory pasource pasink battery   \
 	-t iceberg-rainbow \
 	-p cpu.warning:85% \
 	-p cpu.critical:90% \
 	-p cpu.percpu: true \ 
-  
+ 
 
 	font pango:JetBrainsMono NF Bold 10
 	position top
