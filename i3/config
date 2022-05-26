@@ -49,22 +49,6 @@ set $firstMonitor HDMI-1
 set $secondMonitor HDMI-2
 
 # Other Examples
-
-#set $firstMonitor DP3
-#set $secondMonitor LVDS1
-
-#set $firstMonitor DVI-I-0
-#set $secondMonitor HDMI-0
-
-#set $firstMonitor DVI-0
-#set $secondMonitor DVI-1
-
-#set $firstMonitor DVI-I-1
-#set $secondMonitor DVI-D-1
-
-#set $firstMonitor HDMI-1
-#set $secondMonitor HDMI-2
-
 workspace 1 output $firstMonitor
 workspace 2 output $firstMonitor
 workspace 3 output $firstMonitor
@@ -103,13 +87,13 @@ bindsym $mod+Shift+0 move container to workspace 10; workspace 10
 ################# menu's in arcolinux
 
 # start dmenu
-# bindsym $mod+shift+d exec --no-startup-id dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'
+bindsym $mod+Mod1+d exec --no-startup-id dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'
 
 # start xfce4-appfinder
-bindsym mod1+F2 exec --no-startup-id xfce4-appfinder --collapsed
+# bindsym mod1+F2 exec --no-startup-id xfce4-appfinder --collapsed
 
 # start xfce-appfinder
-bindsym mod1+F3 exec --no-startup-id xfce4-appfinder
+# bindsym mod1+F3 exec --no-startup-id xfce4-appfinder
 
 # start xlunch app launcher
 # bindsym mod1+F5 exec --no-startup-id xlunch --config ~/.config/xlunch/default.conf --input ~/.config/xlunch/entries.dsv
@@ -118,12 +102,12 @@ bindsym mod1+F3 exec --no-startup-id xfce4-appfinder
 bindsym $mod+shift+d exec --no-startup-id "rofi -show-icons -font 'JetBrains Mono 13' -theme ~/.config/rofi/themes/spotlight-dark.rasi -show drun"
 
 # start rofi small
-bindsym $mod+F12 exec rofi -show power-menu -modi power-menu:rofi-power-menu -width 20 -theme ~/.config/rofi/themes/rounded-purple-dark.rasi
+# bindsym $mod+F12 exec rofi -show power-menu -modi power-menu:rofi-power-menu -width 20 -theme ~/.config/rofi/themes/rounded-purple-dark.rasi
 ################# how to exit, logoff, suspend, ...
 
 # Backup exit
 # Press ctrl+alt+x - check toolbar for next choices
-bindsym control+mod1+X mode "$mode_system"
+bindsym $mod+Control+p mode "$mode_system"
 
 set $mode_system System (k) lock, (l) logout, (u) suspend, (h) hibernate, (r) reboot, (s) shutdown
 mode "$mode_system" {
@@ -274,8 +258,15 @@ bindsym $mod+Mod1+Ctrl+Left resize grow width 1 px or 1 ppt
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # choose your font
-font pango:Noto Mono Regular 13
+font pango:JetBrains Mono 13
 
+# Custom assignation
+assign [class="Alacritty"]                                    → 1
+assign [class="Firefox"]                                      → 2
+assign [class="Chromium|Google-chrome"]                       → 2
+assign [class="Nemo|Thunar|Caja|nautilus|Nautilus"]           → 3
+assign [class="Code"]                                         → 4
+assign [class="Gedit"]                                        → 5
 ################# assign applications to workspaces 
 
 # Assign application to start on a specific workspace
@@ -321,15 +312,14 @@ font pango:Noto Mono Regular 13
 
 # USER APPLICATIONS TO START AT BOOT
 
-# ArcoLinux Welcome App
-exec --no-startup-id dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
+
 
 # Autotiling
 exec_always --no-startup-id autotiling
 
 # Browser
 # exec --no-startup-id vivaldi-stable
-for_window [class="Vivaldi-stable"] focus
+for_window [class="Firefox"] focus
 
 # Text-editor
 # exec --no-startup-id geany
@@ -343,7 +333,7 @@ for_window [class="Vivaldi-stable"] focus
 
 # Music
 # exec --no-startup-id spotify
-for_window [class="Spotify"] focus
+# for_window [class="Spotify"] focus
 
 # TRAY APPLICATIONS
 
@@ -382,7 +372,7 @@ exec --no-startup-id volumeicon
 # exec --no-startup-id xfce4-clipman
 
 # Conky
-exec --no-startup-id conky -c ~/.config/i3/system-overview
+# exec --no-startup-id conky -c ~/.config/i3/system-overview
 
 # feh sets wallpaper
 exec_always	--no-startup-id	nitrogen --restore
@@ -407,15 +397,16 @@ exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
 # not workspace related
 
 # ArcoLinux Welcome App
-bindsym control+mod1+w exec --no-startup-id arcolinux-welcome-app
+# exec --no-startup-id dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
+# bindsym control+mod1+w exec --no-startup-id arcolinux-welcome-app
 
 # ArchLinux Tweak Tool
-bindsym control+mod1+e exec --no-startup-id archlinux-tweak-tool
+# bindsym control+mod1+e exec --no-startup-id archlinux-tweak-tool
 
 # conky
-bindsym $mod+c exec --no-startup-id conky-toggle
-bindsym control+mod1+Next exec --no-startup-id conky-rotate -n
-bindsym control+mod1+Prior exec --no-startup-id conky-rotate -p
+# bindsym $mod+c exec --no-startup-id conky-toggle
+# bindsym control+mod1+Next exec --no-startup-id conky-rotate -n
+# bindsym control+mod1+Prior exec --no-startup-id conky-rotate -p
 
 # terminal
 bindsym $mod+Return exec --no-startup-id alacritty;focus
@@ -426,7 +417,7 @@ bindsym control+mod1+KP_Enter exec --no-startup-id alacritty; focus
 bindsym F12 exec --no-startup-id xfce4-terminal --drop-down; focus
 
 # System monitor
-bindsym control+Shift+Escape exec --no-startup-id xfce4-taskmanager;focus
+# bindsym control+Shift+Escape exec --no-startup-id xfce4-taskmanager;focus
 
 # settings
 bindsym control+mod1+m exec --no-startup-id xfce4-settings-manager
@@ -463,25 +454,24 @@ bindsym --release $mod+Escape exec xkill
 
 # Function Keybinds
 # Browser
-bindsym $mod+F1 exec --no-startup-id exo-open --launch webbrowser;focus
+# bindsym $mod+F1 exec --no-startup-id exo-open --launch firefox;focus
 # qwerty/azerty conflict with w
-bindsym $mod+w exec --no-startup-id exo-open --launch webbrowser;focus
+# bindsym $mod+w exec --no-startup-id exo-open --launch webbrowser;focus
 bindsym control+$mod+f exec --no-startup-id firefox;focus
-bindsym control+mod1+v exec --no-startup-id vivaldi-stable;focus
 bindsym control+mod1+g exec --no-startup-id chromium;focus
 
 # Text Editor
 # bindsym $mod+F2 exec --no-startup-id geany;focus
-bindsym $mod+F2 exec --no-startup-id atom;focus
+bindsym $mod+F2 exec --no-startup-id code;focus
 
 # Basic Draw Tool
-bindsym $mod+F3 exec --no-startup-id inkscape;focus
+# bindsym $mod+F3 exec --no-startup-id inkscape;focus
 
 # Advanced Draw Tool
-bindsym $mod+F4 exec --no-startup-id gimp;focus
+# bindsym $mod+F4 exec --no-startup-id gimp;focus
 
 # document comparison
-bindsym $mod+F5 exec --no-startup-id meld;focus
+# bindsym $mod+F5 exec --no-startup-id meld;focus
 bindsym control+mod1+i exec --no-startup-id nitrogen;focus
 
 # video player
@@ -498,13 +488,13 @@ bindsym $mod+Shift+KP_Enter exec --no-startup-id nautilus;focus
 bindsym control+mod1+b exec --no-startup-id nautilus;focus
 
 # mail application
-bindsym $mod+F9 exec --no-startup-id evolution;focus
+# bindsym $mod+F9 exec --no-startup-id evolution;focus
 # bindsym $mod+F9 exec --no-startup-id geary;focus
 # bindsym control+mod1+e exec --no-startup-id geary;focus
 
 # music
-bindsym $mod+F10 exec --no-startup-id spotify;focus
-bindsym control+mod1+s exec --no-startup-id spotify;focus
+# bindsym $mod+F10 exec --no-startup-id spotify;focus
+# bindsym control+mod1+s exec --no-startup-id spotify;focus
 
 ################# screenshots                      
 
@@ -561,6 +551,8 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="^Preferences$"] floating enable
 for_window [window_role="setup"] floating enable
 
+
+for_window [class="Code"] focus
 ################# give focus to applications       
 
 for_window [class="Gnome-terminal"] focus
@@ -573,30 +565,30 @@ for_window [class="Alacritty"] focus
 
 # Variety keybindings mod1 = ALT
 # trash wallpaper
-bindsym mod1+t exec --no-startup-id variety -t
+# bindsym mod1+t exec --no-startup-id variety -t
 # next wallpaper
-bindsym mod1+n exec --no-startup-id variety -n
-bindsym mod1+Right exec --no-startup-id variety -n
+# bindsym mod1+n exec --no-startup-id variety -n
+# bindsym mod1+Right exec --no-startup-id variety -n
 # previous wallpaper
-bindsym mod1+p exec --no-startup-id variety -p
-bindsym mod1+Left exec --no-startup-id variety -p
+# bindsym mod1+p exec --no-startup-id variety -p
+# bindsym mod1+Left exec --no-startup-id variety -p
 # favorite wallpaper
-bindsym mod1+f exec --no-startup-id variety -f
+# bindsym mod1+f exec --no-startup-id variety -f
 # pause wallpaper
-bindsym mod1+Up exec --no-startup-id variety --pause
+# bindsym mod1+Up exec --no-startup-id variety --pause
 # resume wallpaper
-bindsym mod1+Down exec --no-startup-id variety --resume
+# bindsym mod1+Down exec --no-startup-id variety --resume
 
 ################# variety with pywal for your wallpapers/colour schemes
 
 # next wallpaper
-bindsym mod1+Shift+n exec --no-startup-id variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
+# bindsym mod1+Shift+n exec --no-startup-id variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
 # previous wallpaper
-bindsym mod1+Shift+p exec --no-startup-id variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
+# bindsym mod1+Shift+p exec --no-startup-id variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
 # trash wallpaper
-bindsym mod1+Shift+t exec --no-startup-id variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
+# bindsym mod1+Shift+t exec --no-startup-id variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
 # Update Wallpaper
-bindsym mod1+Shift+u exec --no-startup-id wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)
+# bindsym mod1+Shift+u exec --no-startup-id wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)
 
 ################# audio settings                   
 
@@ -621,19 +613,19 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 # decrease
 ################# bar toggle                       
 
 # bar toggle, hide or show
-bindsym $mod+b bar mode toggle
+# bindsym $mod+b bar mode toggle
 
 ################# border control                   
 
 # Border control
 hide_edge_borders both
-bindsym $mod+shift+b exec --no-startup-id i3-msg border toggle
+# bindsym $mod+shift+b exec --no-startup-id i3-msg border toggle
 
 # changing border style
 # super+t in arcolinux is starting terminal
-bindsym $mod+t border normal
-bindsym $mod+y border pixel 1
-bindsym $mod+u border none
+# bindsym $mod+t border normal
+# bindsym $mod+y border pixel 1
+# bindsym $mod+u border none
 
 # new_window pixel 1
 new_window normal
@@ -655,7 +647,7 @@ popup_during_fullscreen smart
 # delete or uncomment the following lines if you do not have it or do not
 # want it
 
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 0
 gaps inner 15
 gaps outer 5
 # smart_gaps on
@@ -708,7 +700,7 @@ exec_always --no-startup-id picom --config ~/.config/i3/picom.conf
 bindsym control+mod1+o exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
 
 ################# bar appearance                   
-exec_always --no-startup-id sh $HOME/.config/polybar/cuts/launch.sh
+
 # bar {
 #     height 25
 #     workspace_buttons yes
@@ -757,6 +749,7 @@ exec_always --no-startup-id sh $HOME/.config/polybar/cuts/launch.sh
 #     # polybar is launched elsewhere - search for the word
 #     # from the opening of the "bar {...}" till the end has to go or hashtagged out
 #     # in order for the system trayicons to show up in polybar
+exec_always --no-startup-id sh $HOME/.config/polybar/forest/launch.sh
 
 #     ##START THEMING BAR
 #     # Theme name : ArcoLinux Default
